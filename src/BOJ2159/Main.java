@@ -3,13 +3,9 @@ package BOJ2159
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main {
-    static int[] dr = {-1,1,0,0}; // 상, 하, 좌, 우
-    static int[] dc = {0,0,-1,1}; // 상, 하, 좌, 우
     public static void main(String[] args) throws IOException {
 
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
