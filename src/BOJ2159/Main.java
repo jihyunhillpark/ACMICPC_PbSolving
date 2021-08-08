@@ -1,27 +1,40 @@
-package BOJ2159
+package BOJ2159;
+
+import com.sun.tools.javadoc.Start;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
 
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(in.readLine(), " ");
+        int size = Integer.parseInt(in.readLine());
+        StringTokenizer st = new StringTokenizer(in.readLine()," ");
+        int people[] = new int[size];
+        int pos[] = new int[size];
 
-        char[] A = st.nextToken().toCharArray();
-        char[] B = st.nextToken().toCharArray();
-        int gap = B.length - A.length + 1, min = 50;
+        for(int i = 0 ; i < size ; i++)
+            people[i] = Integer.parseInt(st.nextToken());
 
-        for(int i = 0 ; i < gap ; i++){
-            int temp = 0;
-            for(int j = 0; j < A.length ; j++){
-                if(A[j] != B[j+i]) temp++;
+        // 처리
+        for(int i = 0; i < size ; i++){
+            int ct = people[i];
+            for(int j = 0; j < size ; j++){
+                if(pos[j] != 0 ) continue;
+                else{
+                    if(ct == 0) {
+                        pos[j] = i+1;
+                        break;
+                    }
+                    else ct--;
+                }
             }
-            min = (temp < min)?temp: min;
         }
-        System.out.println(min);
+        for(int e : pos) System.out.print(e + " ");
+        System.out.println();
     }
 }
