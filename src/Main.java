@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashSet;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
@@ -9,29 +10,41 @@ public class Main {
 
         //입력
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(in.readLine()), x , y, count = 0, pre=0;
-        StringTokenizer st;
-        Stack<Integer> stack = new Stack<>();
-
-        for(int i = 0 ; i < N ; i++){
+        StringTokenizer st = new StringTokenizer(in.readLine(), " ");
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+        int train[] = new int[N];
+        HashSet<Integer> set = new HashSet<>();
+        int mask = (1 << Integer.SIZE -1) >> (20-1);
+        int mask2 = (1 << Integer.SIZE -1) >> Integer.SIZE -1; //11111...1111
+        for(int i = 0 ; i < M ; i++){
             st = new StringTokenizer(in.readLine(), " ");
-            x = Integer.parseInt(st.nextToken());
-            y = Integer.parseInt(st.nextToken());
-            if (!stack.isEmpty()) {
-                if(y < stack.peek()){
-                    count++;
-                    stack.pop();
-                    if(!stack.isEmpty() && stack.peek() == y ) continue;
-                    if( y > 0) stack.push(y);
+            int command = Integer.parseInt(st.nextToken());
+            int target = Integer.parseInt(st.nextToken())-1;
+            switch (command){
+                case 1:{
+                    train[target] |= 1 << ( Integer.SIZE - Integer.parseInt(st.nextToken()));
+                    break;
                 }
-                else if( y > stack.peek()) stack.push(y);
+                case 2:{
+                    int pos = Integer.parseInt(st.nextToken());
+                    int mask3 = 1 << (Integer.SIZE - pos);
+                    mask3 ^= mask2;
+                    train[target] &= mask3;
+                    break;
+                }
+                case 3:{ // 이부분 실제로는 길이 20
+                    train[target] = (train[target] >>> 1) & mask;
+                    break;
+                }
+                case 4:{
+                    train[target] <<= 1;
+                    break;
+                }
             }
-            else if( 0 < y ) stack.push(y);
         }
-        while(!stack.isEmpty()){
-            stack.pop();
-            count++;
-        }
-        System.out.println(count);
+        for(int i = 0 ; i < N ; i++) set.add(train[i]);
+        System.out.println(set.size());
+
     }
 }
