@@ -1,5 +1,3 @@
-package BOJ;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -102,7 +100,7 @@ public class Main {
         int ret = 0;
         for(int[] row: grid){
             for(int e : row){
-               ret += e;
+                ret += e;
             }
         }
         System.out.println(ret);
@@ -117,3 +115,4 @@ public class Main {
 //        }
 //    }
 }
+
