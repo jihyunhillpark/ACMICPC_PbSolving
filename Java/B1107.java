@@ -17,11 +17,10 @@ public class Main {
 
         //처리
         int sub = Math.abs(target-100);//1. 100에서 얼마나 떨어졌는지 저장
-        int val = target;
-        int num = 1;
-        int temp = 0, sub2 = 0;
-        boolean Ndone = true;
-        while(Ndone) {
+        int uSub = 0, dSub = 0;
+        boolean Udone = true;
+        // 위로 가면서 가장 가까운 애 찾기
+        while(Udone) {
             int count = 0;
             do {
                 // 2-1. 한번에 target에 가장 가까운 수로 이동하기
@@ -47,6 +46,7 @@ public class Main {
                 num *= 10;
             } while (0 < val);
         }
+        //아래로 가면서 가장 가까운애 찾기
 
         sub2 += Math.abs(temp-target);
         // 2-2. 차이
