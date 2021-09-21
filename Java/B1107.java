@@ -1,13 +1,9 @@
-package BOJ;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
 public class Main {
-    static int dr[] = {-1,0,1,0}; //북, 동, 남, 서
-    static int dc[] = {0,1,0,-1};
     public static void main(String[] args) throws IOException {
         // 입력
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
